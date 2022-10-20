@@ -1,11 +1,11 @@
 import React from "react";
 import {StyleSheet, Text, View} from 'react-native';
 
-const Code = () => {
+const InputFile = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.sectionTitle}>
-                Hi! Output Input
+                File!
             </Text>
         </View>
     )
@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFFFFF',
     },
+    tasksWrapper: {
+        paddingTop: 50,
+        paddingHorizontal: 34
+    },
     sectionTitle: {
         color: '##222222',
         width: 327,
@@ -27,4 +31,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Code;
+export default InputFile;

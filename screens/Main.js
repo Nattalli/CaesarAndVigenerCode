@@ -25,9 +25,15 @@ const Main = ({navigation }) => {
                 </Pressable>
                 <Pressable
                     style={styles.buttonStyle}
-                    onPress={() => navigation.navigate('Plot')}>
+                    onPress={() => navigation.navigate('PlotBuilder')}>
                     <Text style={styles.buttonText}>
                         Побудувати графік
+                    </Text>
+                </Pressable>
+                <Pressable
+                    onPress={() => navigation.navigate('AboutMe')}>
+                    <Text style={styles.buttonTextAboutMe}>
+                        Про автора
                     </Text>
                 </Pressable>
             </View>
@@ -42,7 +48,7 @@ const styles = StyleSheet.create({
     },
     tasksWrapper: {
         paddingTop: 50,
-        paddingHorizontal: 34
+        marginLeft: 40
     },
     sectionTitle: {
         color: '##222222',
@@ -72,11 +78,20 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#FFFFFF',
-        fontSize: 18,
+        fontSize: 20,
         lineHeight: 22,
         textAlign: 'center',
         height: 22,
-
+    },
+    buttonTextAboutMe: {
+        width: 327,
+        paddingHorizontal: 38,
+        marginTop: 12,
+        color: '#8F5CFF',
+        fontSize: 20,
+        lineHeight: 22,
+        textAlign: 'center',
+        height: 22,
     }
 });
 

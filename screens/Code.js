@@ -98,7 +98,7 @@
          backgroundColor: '#FFFFFF',
      },
      tasksWrapper: {
-         paddingTop: 35,
+         paddingTop: 85,
          marginLeft: 50
      },
      sectionTitle: {

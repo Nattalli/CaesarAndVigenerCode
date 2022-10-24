@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {StyleSheet, View, Text, Pressable} from "react-native";
+import {StyleSheet, View, Text } from "react-native";
 import {ProgressChart} from "react-native-chart-kit";
 import RNPickerSelect from 'react-native-picker-select';
 

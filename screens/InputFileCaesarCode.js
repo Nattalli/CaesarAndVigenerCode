@@ -1,33 +1,63 @@
 import React from 'react';
-import {StyleSheet, TextInput, SafeAreaView, View, Text, Pressable, Alert} from 'react-native';
-import { encrypt } from 'caesar-shift';
+import {Alert, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {encrypt} from 'caesar-shift';
 import * as FileSystem from 'expo-file-system';
 
-const CodeCaesar = ({navigation}) => {
+let var1 = 1;
+let var2 = "a";
+let var3 = "a";
 
-    const [number, onChangeNumber] = React.useState(null);
-    const [number2, onChangeNumber2] = React.useState(null);
+const InputCodeCaesar = () => {
     const uri = 'file:///Users/Nataliya/Desktop/university/md/lab1/lab1/f.txt';
 
-     function code() {
-        if (number2 !== null) {
-            if (number !== null || number !== " ") {
-                if (!isNaN(parseInt(number))) {
-                    return encrypt(number, number2)
-                } else {
-                    alert("Key must be a number!")
-                    return 1
-                }
-            } else {
-                return encrypt(1, number2)
-            }
-        } else {
-            return ""
-        }
+    function saveValues(val1, val2, val3) {
+        var1 = val1.toString();
+        var2 = val2;
+        var3 = val3;
+        return [var1, var2, var3]
     }
 
+    function code() {
+        FileSystem.readAsStringAsync(
+            uri
+        )
+            .then((values) => {
+                Alert.alert(
+                    "Success",
+                    values
+                )
+                console.log(values);
+                let textSplit = values.toString().split('\n');
+                if (textSplit[1] !== null) {
+                    if (textSplit[0] !== null || textSplit[0] !== " ") {
+                        if (!isNaN(parseInt(textSplit[0]))) {
+                            textSplit.push(encrypt(textSplit[0], textSplit[1]).toString())
+                        } else {
+                            alert("Key must be a number!")
+                            textSplit.push("1")
+                        }
+                    } else {
+                        textSplit.push(encrypt(1, textSplit[1]).toString())
+                    }
+                } else {
+                    textSplit.push("")
+                }
+                console.log(textSplit)
+                let a = saveValues(textSplit[0].toString(), textSplit[1], textSplit[2])
+                return textSplit;
+            })
+            .catch(error => {
+                Alert.alert(
+                    "Failure!",
+                    error
+                );
+            })
+    }
+
+    code();
+
     function toWrite(){
-         return number + "\n" + code();
+        return var1.toString() + "\n" + var3.toString();
     }
 
     function download() {
@@ -58,10 +88,11 @@ const CodeCaesar = ({navigation}) => {
                         multiline
                         numberOfLines={5}
                         style={styles.inputKey}
-                        onChangeText={onChangeNumber}
-                        value={number}
+                        onChangeText={var1.toString()}
+                        value={var1}
                         placeholder="Key..."
                         keyboardType="numeric"
+                        editable={false}
                     />
                 </SafeAreaView>
 
@@ -69,18 +100,19 @@ const CodeCaesar = ({navigation}) => {
                     multiline
                     numberOfLines={12}
                     style={styles.input}
-                    onChangeText={onChangeNumber2}
-                    value={number2}
+                    onChangeText={var2.toString()}
+                    value={var2}
                     defaultValue=""
                     placeholder="Code..."
                     keyboardType="numeric"
+                    editable={false}
                 />
                 <Text style={styles.sectionTitle}>Вивід:</Text>
                 <TextInput
                     multiline
                     numberOfLines={12}
                     style={styles.input}
-                    value={code()}
+                    value={var3.toString()}
                     placeholder="Code..."
                     keyboardType="numeric"
                     editable={false}
@@ -156,4 +188,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CodeCaesar;
+export default InputCodeCaesar;

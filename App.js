@@ -7,10 +7,13 @@ import PlotBuilder from "./screens/PlotBuilder";
 import CodeCaesar from "./screens/CodeCaesar";
 import Decode from "./screens/Decode";
 import CodeVigener from "./screens/CodeVigener";
-import InputFile from "./screens/InputFile";
 import DecodeCaesar from "./screens/DecodeCaesar";
 import DecodeVigener from "./screens/DecodeVigener";
 import AboutMe from "./screens/AboutMe"
+import InputFileVigenerDecode from "./screens/InputFileVigenerDecode";
+import InputFileCaesarDecode from "./screens/InputFileCaesarDecode";
+import InputFileVigenerCode from "./screens/InputFileVigenerCode";
+import InputFileCaesarCode from "./screens/InputFileCaesarCode";
 
 
 const Stack = createNativeStackNavigator();
@@ -34,7 +37,10 @@ const MyStack = () => {
                 <Stack.Screen name="CodeVigener" component={CodeVigener} />
                 <Stack.Screen name="DecodeCaesar" component={DecodeCaesar} />
                 <Stack.Screen name="DecodeVigener" component={DecodeVigener} />
-                <Stack.Screen name="InputFile" component={InputFile} />
+                <Stack.Screen name="InputFileCaesarDecode" component={InputFileCaesarDecode} />
+                <Stack.Screen name="InputFileCaesarCode" component={InputFileCaesarCode} />
+                <Stack.Screen name="InputFileVigenerCode" component={InputFileVigenerCode} />
+                <Stack.Screen name="InputFileVigenerDecode" component={InputFileVigenerDecode} />
                 <Stack.Screen name="AboutMe" component={AboutMe} />
             </Stack.Navigator>
         </NavigationContainer>

@@ -1,23 +1,60 @@
 import React from "react";
-import {StyleSheet, TextInput, SafeAreaView, View, Text, Pressable} from 'react-native';
+import {StyleSheet, TextInput, SafeAreaView, View, Text, Pressable, Alert} from 'react-native';
 const { cipher } = require('npm-vigenere-cipher');
+import * as FileSystem from 'expo-file-system';
 
 const CodeVigener = () => {
 
     const [number, onChangeNumber] = React.useState(null);
     const [number2, onChangeNumber2] = React.useState(null);
+    const uri = 'file:///Users/Nataliya/Desktop/university/md/lab1/lab1/f.txt';
 
     function code () {
+        const regMatch = /^[a-zA-Z]*$/.test(number2);
         if (number2 !== null) {
-            if (number !== null || number !== " ") {
-                return cipher(number2, number)
+            if (number !== " " || regMatch || !isNaN(number2)) {
+                try {
+                    return cipher(number2, number)
+                }
+                catch {
+                    Alert.alert("Not valid value!", "Value should be a numeric or alphabetic")
+                }
             } else {
-                return ""
+                if (number === null)
+                {
+                    return 1
+                }
+                else {
+                    Alert.alert("Not valid value!", "Value should be a numeric or alphabetic")
+                }
             }
         }
         else {
-            return ""
+            return 1
         }
+    }
+
+    function toWrite(){
+        return number + "\n" + code();
+    }
+
+    function download() {
+        FileSystem.writeAsStringAsync(
+            uri,
+            toWrite()
+        )
+            .then(() => {
+                Alert.alert(
+                    "Success!",
+                    uri
+                );
+            })
+            .catch(error => {
+                Alert.alert(
+                    "Failure!",
+                    error
+                );
+            });
     }
 
     return (
@@ -59,7 +96,7 @@ const CodeVigener = () => {
                 <View style={styles.buttonArea}>
                     <Pressable
                         style={styles.buttonStyle}
-                        onPress={() => alert("Успішно завантажено!")}>
+                        onPress={() => download()}>
                         <Text style={styles.buttonText}>
                             Завантажити
                         </Text>

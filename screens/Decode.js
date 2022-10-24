@@ -40,7 +40,7 @@ const Decode = ({navigation}) => {
     function getNextPageNameCaesar() {
         let buttonValue = getButtonValue()
         if (buttonValue === "option1") {
-            return "InputFile";
+            return "InputFileCaesarDecode";
         }
         else {
             return "DecodeCaesar";
@@ -50,7 +50,7 @@ const Decode = ({navigation}) => {
     function getNextPageNameVigener() {
         let buttonValue = getButtonValue()
         if (buttonValue === "option1") {
-            return "InputFile";
+            return "InputFileVigenerDecode";
         }
         else {
             return "DecodeVigener";

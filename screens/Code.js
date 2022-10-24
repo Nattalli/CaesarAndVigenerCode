@@ -41,9 +41,8 @@
 
      function getNextPageNameCaesar() {
          let buttonValue = getButtonValue()
-         console.log(buttonValue)
          if (buttonValue === "option1") {
-             return "InputFile";
+             return "InputFileCaesarCode";
          }
          else {
              return "CodeCaesar";
@@ -53,7 +52,7 @@
      function getNextPageNameVigener() {
          let buttonValue = getButtonValue()
          if (buttonValue === "option1") {
-             return "InputFile";
+             return "InputFileVigenerCode";
          }
          else {
              return "CodeVigener";
